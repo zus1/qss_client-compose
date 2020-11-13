@@ -1,0 +1,17 @@
+version: '3'
+services:
+  client:
+    container_name: qss_client
+    build:
+      context: https://github.com/zus1/qss_client.git
+      dockerfile: ./.compose/Dockerfile
+    restart: always
+    ports:
+      - '8080:80'
+    links:
+      - memcached
+  memcached:
+    container_name: qss_memcached
+    image: memcached
+    ports:
+      - '11211:11211'
